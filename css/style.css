@@ -383,7 +383,10 @@ body {
 }
 
 .yt-caption {
-  font-size: 0.8rem;
+  font-size: clamp(0.58rem, 1.6vw, 0.82rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--text-sub);
   text-align: center;
   letter-spacing: 0.1em;
