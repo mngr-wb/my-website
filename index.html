@@ -289,17 +289,21 @@
     }
     loadSlide(0);
 
+    function vw() {
+      return track.parentElement.getBoundingClientRect().width;
+    }
+
     function go(idx) {
       stopSlide(cur);
       cur = ((idx % total) + total) % total;
-      track.style.transform = 'translateX(-' + (cur * track.parentElement.offsetWidth) + 'px)';
+      track.style.transform = 'translateX(-' + (cur * vw()) + 'px)';
       loadSlide(cur);
       if (curEl) curEl.textContent = cur + 1;
     }
 
     window.addEventListener('resize', function () {
       track.style.transition = 'none';
-      track.style.transform = 'translateX(-' + (cur * track.parentElement.offsetWidth) + 'px)';
+      track.style.transform = 'translateX(-' + (cur * vw()) + 'px)';
       requestAnimationFrame(function () { track.style.transition = ''; });
     });
 

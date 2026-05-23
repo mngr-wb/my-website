@@ -418,6 +418,8 @@ body {
   flex: 1;
   overflow: hidden;
   border-radius: 16px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .yt-slider-track {
