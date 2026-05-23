@@ -992,6 +992,32 @@ body {
   resize: vertical;
   min-height: 130px;
 }
+/* View More button */
+.view-more-wrap {
+  text-align: center;
+  margin-top: 28px;
+}
+.view-more-btn {
+  display: inline-block;
+  padding: 11px 40px;
+  border-radius: 50px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.45);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.3em;
+  color: var(--text-sub);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.view-more-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--accent);
+  color: var(--text-main);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(180, 160, 210, 0.25);
+}
+
 .form-submit {
   align-self: center;
   padding: 14px 44px;
