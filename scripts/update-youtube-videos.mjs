@@ -59,20 +59,38 @@ function renderMovieGrid(videos) {
   const ind = '      ';
   const cards = videos.map((v) => {
     const cap = escapeHtml(cleanTitle(v.title));
-    const href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(v.id);
-    const thumb = 'https://i.ytimg.com/vi/' + encodeURIComponent(v.id) + '/hqdefault.jpg';
+    const videoId = encodeURIComponent(v.id);
+
+    let inner;
+    if (v.embed === false) {
+      const href = 'https://www.youtube.com/watch?v=' + videoId;
+      const thumb = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg';
+      inner = [
+        ind + '      <a class="yt-link-card"',
+        ind + `         href="${href}"`,
+        ind + '         target="_blank" rel="noopener noreferrer"',
+        ind + `         aria-label="${cap} — YouTube で視聴">`,
+        ind + `        <img src="${thumb}"`,
+        ind + `             alt="${cap}" loading="lazy" />`,
+        ind + '        <span class="yt-link-play" aria-hidden="true"></span>',
+        ind + '        <span class="yt-link-badge">YouTube</span>',
+        ind + '      </a>',
+      ].join('\n');
+    } else {
+      const src = 'https://www.youtube.com/embed/' + videoId;
+      inner = [
+        ind + `      <iframe src="${src}"`,
+        ind + `              title="${cap}"`,
+        ind + '              frameborder="0"',
+        ind + '              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"',
+        ind + '              allowfullscreen loading="lazy"></iframe>',
+      ].join('\n');
+    }
+
     return [
       ind + '  <div class="yt-video-item">',
       ind + '    <div class="yt-embed-wrap">',
-      ind + '      <a class="yt-link-card"',
-      ind + `         href="${href}"`,
-      ind + '         target="_blank" rel="noopener noreferrer"',
-      ind + `         aria-label="${cap} — YouTube で視聴">`,
-      ind + `        <img src="${thumb}"`,
-      ind + `             alt="${cap}" loading="lazy" />`,
-      ind + '        <span class="yt-link-play" aria-hidden="true"></span>',
-      ind + '        <span class="yt-link-badge">YouTube</span>',
-      ind + '      </a>',
+      inner,
       ind + '    </div>',
       ind + `    <p class="yt-caption">${cap}</p>`,
       ind + '  </div>',
